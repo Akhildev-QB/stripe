@@ -7,8 +7,8 @@ export default async function handler(req, res) {
     if (!id) {
       res.status(400).send({ success: false, message: 'Invalid input' });
     } else {
-      const { name, email, metadata } = await stripe.customers.retrieve(id);
-      res.send({ id, name, email, userId: metadata?.dotc_user_id });
+      await stripe.paymentMethods.detach(id);
+      res.send({ success: true });
     }
   } catch (error) {
     const message = `Stripe Error: ${error.message}`;

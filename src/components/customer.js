@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import CustomerCardComponent from './customer-card';
 import CustomerCreateFormComponent from './customer-create-form';
 import CustomerDataComponent from './customer-data';
 
@@ -23,9 +24,14 @@ export default function CustomerComponent() {
     <div className='customer'>
       <p className='customer_title'>Order Processing</p>
       {customer && customer.hasOwnProperty('id') ? (
-        <CustomerDataComponent customer={customer} />
+        <>
+          <CustomerDataComponent customer={customer} />
+          <CustomerCardComponent id={customer.id} />
+        </>
       ) : (
-        <CustomerCreateFormComponent setCustomer={setCustomer} />
+        <CustomerCreateFormComponent
+          fetchCustomerDetails={fetchCustomerDetails}
+        />
       )}
     </div>
   );

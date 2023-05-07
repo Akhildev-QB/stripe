@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-export default function CustomerCreateFormComponent({ setCustomer }) {
+export default function CustomerCreateFormComponent({ fetchCustomerDetails }) {
   const nameRef = useRef();
   const emailRef = useRef();
   const userIdRef = useRef();
@@ -24,7 +24,7 @@ export default function CustomerCreateFormComponent({ setCustomer }) {
     const { id } = await response.json();
 
     if (id) {
-      setCustomer({ id });
+      fetchCustomerDetails(id);
       localStorage.setItem('customer-id', id);
     } else {
       alert('Unable to create customer! Please try again');
