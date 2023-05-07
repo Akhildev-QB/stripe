@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 export default function CustomerCheckoutPaymentComponent({
   secret,
   paymentId,
+  productId,
   price,
 }) {
   const stripe = useStripe();
@@ -11,8 +12,25 @@ export default function CustomerCheckoutPaymentComponent({
 
   const handle = async () => {
     try {
-      await stripe.confirmCardPayment(secret, { payment_method: paymentId });
-      router.replace('/');
+      const { paymentIntent } = await stripe.confirmCardPayment(secret, {
+        payment_method: paymentId,
+      });
+
+      if (!paymentIntent?.id) {
+        alert('Unable to complete payment! Please try again');
+        return;
+      }
+
+      const order = JSON.parse(localStorage.getItem('order')) || [];
+      order.push({
+        id: Date.now().toString(),
+        productId,
+        paymentId: paymentIntent.id,
+        date: new Date().toLocaleDateString(),
+      });
+      localStorage.setItem('order', JSON.stringify(order));
+
+      router.replace('/order');
     } catch (error) {
       alert('Unable to complete payment! Please try again');
     }

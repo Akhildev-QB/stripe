@@ -1,12 +1,11 @@
-.customer {
+.order {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
-.customer_title {
+.order_title {
   font-size: 1.6rem;
   font-weight: 600;
   margin: 1rem 0 2rem 0;

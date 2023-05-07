@@ -1,0 +1,45 @@
+.order_item {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  align-items: center;
+  justify-content: center;
+  margin: 1.2rem;
+  column-gap: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: solid 1.5px black;
+}
+
+.order_item_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.order_item_container_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order_item_image {
+  border-radius: 50%;
+  justify-self: center;
+}
+
+.order_item_name {
+  font-weight: 500;
+}
+
+.order_item_status {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status_green {
+  color: green;
+}
+
+.status_red {
+  color: red;
+}

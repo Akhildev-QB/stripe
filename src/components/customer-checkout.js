@@ -14,7 +14,6 @@ export default function CustomerCheckoutComponent({
   paymentId,
 }) {
   const [secret, setSecret] = useState();
-
   const product = PRODUCTS.find(({ id }) => id === Number(productId));
 
   const handle = async () => {
@@ -31,15 +30,14 @@ export default function CustomerCheckoutComponent({
   return (
     <div className='customer_checkout'>
       {secret ? (
-        <>
-          <Elements stripe={stripePromise} options={{ clientSecret: secret }}>
-            <CustomerCheckoutPaymentComponent
-              secret={secret}
-              paymentId={paymentId}
-              price={product?.price}
-            />
-          </Elements>
-        </>
+        <Elements stripe={stripePromise} options={{ clientSecret: secret }}>
+          <CustomerCheckoutPaymentComponent
+            secret={secret}
+            paymentId={paymentId}
+            productId={productId}
+            price={product?.price}
+          />
+        </Elements>
       ) : (
         <button className='customer_checkout_button' onClick={handle}>
           Proceed to checkout (JP¥ {product?.price})
