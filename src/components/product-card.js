@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 export default function ProductCardComponent({ product }) {
   const router = useRouter();
   const handle = () => {
-    router.push('order-process');
+    router.push({ pathname: 'checkout', query: { id: product.id } });
   };
 
   return (

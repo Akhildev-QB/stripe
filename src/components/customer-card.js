@@ -7,8 +7,7 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-export default function CustomerCardComponent({ id }) {
-  const [payment, setPayment] = useState();
+export default function CustomerCardComponent({ id, payment, setPayment }) {
   const [secret, setSecret] = useState();
 
   const handle = async e => {
@@ -34,6 +33,7 @@ export default function CustomerCardComponent({ id }) {
   useEffect(() => {
     const id = localStorage.getItem('payment-id');
     if (id) fetchPaymentDetails(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
