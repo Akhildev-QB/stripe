@@ -1,0 +1,36 @@
+.customer_create_form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.customer_create_form_row {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.customer_create_form_row label {
+  font-weight: 500;
+}
+
+.customer_create_form_row input {
+  padding: 0.4rem;
+}
+
+.customer_create_form_button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 0, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.customer_create_form_button:hover {
+  background: rgba(0, 128, 0, 0.2);
+}
