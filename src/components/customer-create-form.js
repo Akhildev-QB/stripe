@@ -1,4 +1,3 @@
-import { URL } from '@/shared/constants/constants';
 import { useRef } from 'react';
 
 export default function CustomerCreateFormComponent({ setCustomer }) {
@@ -16,13 +15,12 @@ export default function CustomerCreateFormComponent({ setCustomer }) {
       return;
     }
 
-    const url = `${URL}/customer`;
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, userId }),
     };
-    const response = await fetch(url, options);
+    const response = await fetch('api/customer/create', options);
     const { id } = await response.json();
 
     if (id) {

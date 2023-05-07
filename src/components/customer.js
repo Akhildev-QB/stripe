@@ -5,9 +5,18 @@ import CustomerDataComponent from './customer-data';
 export default function CustomerComponent() {
   const [customer, setCustomer] = useState({});
 
+  const fetchCustomerDetails = async id => {
+    const response = await fetch(`api/customer/${id}`);
+    const data = await response.json();
+    setCustomer(data);
+  };
+
   useEffect(() => {
     const id = localStorage.getItem('customer-id');
-    if (id) setCustomer({ id });
+    if (id) {
+      setCustomer({ id });
+      fetchCustomerDetails(id);
+    }
   }, []);
 
   return (
