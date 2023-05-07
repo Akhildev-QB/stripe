@@ -30,16 +30,20 @@ export default function CustomerCheckoutComponent({
 
   return (
     <div className='customer_checkout'>
-      <button className='customer_checkout_button' onClick={handle}>
-        Checkout (JP¥ {product?.price})
-      </button>
-
-      {secret && (
+      {secret ? (
         <>
           <Elements stripe={stripePromise} options={{ clientSecret: secret }}>
-            <CustomerCheckoutPaymentComponent />
+            <CustomerCheckoutPaymentComponent
+              secret={secret}
+              paymentId={paymentId}
+              price={product?.price}
+            />
           </Elements>
         </>
+      ) : (
+        <button className='customer_checkout_button' onClick={handle}>
+          Proceed to checkout (JP¥ {product?.price})
+        </button>
       )}
     </div>
   );
